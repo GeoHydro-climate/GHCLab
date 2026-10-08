@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GeoHydro-Climate Lab (GHC), Department of Geology, Central University of South Bihar, Gaya.">
+<title>GeoHydro-Climate Lab | CUSB Gaya</title>
+<style>
+:root{
+  --navy:#12304a; --blue:#176b87; --teal:#278b83; --earth:#b87333;
+  --ink:#19303d; --muted:#647784; --light:#f4f8fa; --white:#fff;
+  --line:#dbe6eb; --shadow:0 12px 35px rgba(18,48,74,.10);}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);line-height:1.6;background:#fff}
+a{text-decoration:none;color:inherit}
+.container{width:min(1280px,95%);margin:auto}
+.navbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+/* Navbar layout with brand on left/center and navlinks on far right */
+.nav-inner {
+  min-height: 95px;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;}
+/* Brand cluster */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;}
+/* Further Enlarged Logos */
+.ghc-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;}
+.cusb-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;}
+.brand:hover .ghc-logo,
+.brand:hover .cusb-logo {
+  transform: scale(1.05);}
+
+  /* Brand Text */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;}
+.brand-text strong {
+  font-size: 23px;
+  font-weight: 850;
+  letter-spacing: -0.5px;
+  color: var(--navy);
+  white-space: nowrap; /* Ensures single line in navbar */}
+.brand-text small {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  white-space: nowrap;}
+/* Nav links pulled right */
+.navlinks {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: auto;
+  align-items: center;
+  flex-shrink: 0;}
+.navlinks a {
+  color: var(--ink);
+  transition: color 0.2s ease;
+  white-space: nowrap;}
+.navlinks a:hover {
+  color: var(--teal);}
+/* Responsive adjustments */
+@media(max-width: 1200px) {
+  .ghc-logo, .cusb-logo { width: 68px; height: 68px; }
+  .brand-text strong { font-size: 20px; }
+  .brand-text small { font-size: 11px; }
+  .navlinks { gap: 11px; font-size: 13px; }}
+
+@media(max-width: 1020px) {
+  .navlinks { display: none; }
+  .menu { display: block; margin-left: auto; }}
+@media(max-width: 900px) {
+  .navlinks { display: none; }
+  .menu { display: block; margin-left: auto; }
+  .nav-inner { min-height: 85px; }
+  .ghc-logo, .cusb-logo { width: 60px; height: 60px; }
+  .brand-text strong { font-size: 18px; }
+  .brand-text small { font-size: 10px; }}
+/* Mobile adjustments */
+@media(max-width: 900px) {
+  .nav-inner { min-height: 82px; }
+  .ghc-logo, .cusb-logo { width: 56px; height: 56px; }
+  .brand-text strong { font-size: 20px; }
+  .brand-text small { font-size: 11px; }}
+@media(max-width: 560px) {
+  .brand { gap: 10px; }
+  .ghc-logo, .cusb-logo { width: 46px; height: 46px; }
+  .brand-text strong { font-size: 16px; }
+  .brand-text small { font-size: 9.5px; }}
+  
+/* News & Gallery Slideshow */
+.gallery-slider-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  background: #0b2233;}
+.gallery-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;}
+.gallery-slide {
+  min-width: 100%;
+  position: relative;
+  height: 480px;
+  cursor: pointer;}
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;}
+.gallery-slide:hover img {
+  transform: scale(1.02);}
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 35px 35px 25px;
+  background: linear-gradient(to top, rgba(11, 34, 51, 0.92) 0%, rgba(11, 34, 51, 0.45) 60%, transparent 100%);
+  color: #fff;
+  pointer-events: none;}
+.gallery-tag {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #bfe8df;
+  background: rgba(39, 139, 131, 0.35);
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;}
+.gallery-caption h3 {
+  font-size: 21px;
+  color: #fff;
+  margin-bottom: 6px;}
+.gallery-caption p {
+  font-size: 13.5px;
+  color: #d1e2e9;
+  max-width: 700px;}
+.gallery-hint {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  color: #bfe8df;
+  font-weight: 600;}
+
+/* Full-Screen Lightbox Modal */
+.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(11, 34, 51, 0.94);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  animation: modalFadeIn 0.25s ease;}
+.gallery-modal.active {
+  display: flex;}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }}
+
+.modal-content-wrap {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;}
+.modal-image {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);}
+.modal-caption-text {
+  color: #e1f0f2;
+  margin-top: 14px;
+  font-size: 15px;
+  text-align: center;
+  max-width: 750px;
+  line-height: 1.4;}
+
+/* Close Button (Top-Right Cross Mark) */
+.modal-close-btn {
+  position: fixed;
+  top: 25px;
+  right: 30px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-size: 30px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10000;}
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.1);}
+
+@media(max-width: 768px) {
+  .gallery-slide { height: 320px; }
+  .gallery-caption h3 { font-size: 17px; }
+  .gallery-caption p { font-size: 12px; }
+  .modal-close-btn { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 24px; }}
+  
+.navlinks{display:flex;gap:25px;font-size:14px;font-weight:650}
+.navlinks a:hover{color:var(--teal)}
+.menu{display:none;border:0;background:none;font-size:25px;color:var(--navy)}
+.hero {position: relative;
+  overflow: hidden;
+  /* Increased transparency so the image shows clearly */
+  background: 
+    linear-gradient(rgba(11, 34, 51, 0.38), rgba(18, 48, 74, 0.45)),
+    url('images/background.png') center/cover no-repeat;
+  color: white;}
+.hero:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05), transparent 70%);
+  pointer-events: none;}
+/* Hero aligned to the right side */
+.hero-grid {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  justify-content: flex-end; /* Pushes content container to the right */
+  align-items: center;
+  padding: 35px 0;}
+.hero-right-content {
+  max-width: 680px;
+  text-align: right; /* Aligns all text inside to the right */
+  margin-left: auto;}
+
+/* Single-line Hero Title */
+h1 {font-size: clamp(34px, 4.2vw, 56px); /* Scaled so it fits on one line */
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+  white-space: nowrap; /* Forces single line */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);}
+.eyebrow { font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: #bfe8df;
+  margin-bottom: 18px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);}
+.hero p {
+  font-size: 18px;
+  color: #e1f0f2;
+  line-height: 1.6;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  margin-left: auto;}
+/* Buttons docked to the right */
+.hero-buttons {display: flex;gap: 12px;margin-top: 28px;flex-wrap: wrap;justify-content: flex-end; /* Right-align buttons */}
+@media(max-width: 900px) {
+  h1 {white-space: normal; /* Permits wrapping gracefully on smaller mobile viewports */
+    font-size: 30px;}
+  .hero-grid {justify-content: center;}
+  .hero-right-content {
+    text-align: center;
+    max-width: 100%; }
+  .hero-buttons {justify-content: center; }}
+.btn{padding:13px 21px;border-radius:8px;font-weight:750;display:inline-block;border:1px solid transparent}
+.btn-primary{background:white;color:var(--navy)}
+.btn-outline{border-color:rgba(255,255,255,.45);color:white}
+.btn:hover{transform:translateY(-2px)}
+.hero-visual{height:390px;border:1px solid rgba(255,255,255,.18);border-radius:28px;background:
+radial-gradient(circle at 50% 45%,rgba(255,255,255,.18),transparent 28%),
+linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.02));position:relative;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.15)}
+.orbit{position:absolute;border:1px solid rgba(255,255,255,.24);border-radius:50%;inset:40px;transform:rotate(-18deg)}
+.orbit.o2{inset:80px;transform:rotate(35deg)}
+.earth{position:absolute;width:185px;height:185px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:
+radial-gradient(circle at 35% 30%,#70b9a0,#1c7380 48%,#123c59 78%);box-shadow:0 0 50px rgba(92,222,201,.22)}
+.earth:after{content:"";position:absolute;inset:18px;border-radius:50%;background:linear-gradient(35deg,transparent 35%,rgba(188,211,143,.35) 36% 48%,transparent 49% 62%,rgba(201,219,151,.3) 63% 72%,transparent 73%)}
+.satellite{position:absolute;right:35px;top:50px;font-size:42px;transform:rotate(-12deg)}
+.section{padding:50px 0}
+.section.alt{background:var(--light)}
+.section-head{max-width:700px;margin-bottom:28px}
+.kicker{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:1.6px;font-size:12px}
+h2{font-size:clamp(30px,4vw,44px);line-height:1.12;color:var(--navy);margin:9px 0 13px}
+.section-head p{color:var(--muted)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:start}
+.about-card{background:white;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:var(--shadow)}
+.about-card h3{color:var(--navy);margin-bottom:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+/* Lab Activities Slideshow (Matched to News & Gallery) */
+.slider-container {margin-top: 30px; position: relative; border-radius: 20px;
+  overflow: hidden; box-shadow: var(--shadow);border: 1px solid var(--line);background: #0b2233;}
+.slider-track {display: flex; transition: transform 0.5s ease-in-out;}
+.slide { min-width: 100%; position: relative; height: 480px; cursor: pointer;}
+.slide img {width: 100%;height: 100%;object-fit: cover;display: block;transition: transform 0.3s ease;}
+.slide:hover img {transform: scale(1.02);}
+.slide-caption {position: absolute; bottom: 0;left: 0;right: 0;padding: 35px 35px 25px;background: linear-gradient(to top, rgba(11, 34, 51, 0.92) 0%, rgba(11, 34, 51, 0.45) 60%, transparent 100%);color: #fff;pointer-events: none;}
+.slide-caption h4 {font-size: 21px;color: #fff;margin-bottom: 6px;}
+.slide-caption p {font-size: 13.5px;color: #d1e2e9;max-width: 700px;}
+
+/* Slider Controls */
+.slider-btn {position: absolute;top: 50%;transform: translateY(-50%);width: 44px;height: 44px;border-radius: 50%;background: rgba(255, 255, 255, 0.85);
+  border: none;font-size: 18px;color: var(--navy);cursor: pointer;display: flex;align-items: center;justify-content: center;transition: all 0.25s ease;
+  z-index: 5;}
+.slider-btn:hover {background: #fff;transform: translateY(-50%) scale(1.08);}
+.slider-btn.prev { left: 18px; }
+.slider-btn.next { right: 18px; }
+
+/* Dot Indicators */
+.slider-dots {position: absolute;bottom: 12px;right: 25px;display: flex;gap: 8px;z-index: 6;}
+.slider-dot {width: 9px; height: 9px;border-radius: 50%;background: rgba(255, 255, 255, 0.4);border: none;cursor: pointer;transition: all 0.25s ease;}
+.slider-dot.active {background: var(--teal);width: 22px; border-radius: 12px;}
+@media(max-width: 768px) {
+  .slide { height: 320px; }
+  .slide-caption h4 { font-size: 16px; }
+  .slide-caption p { font-size: 12px; }}
+.stat{padding:20px;background:var(--light);border-radius:12px;text-align:center}
+.stat strong{display:block;font-size:25px;color:var(--teal)}
+.stat span{font-size:12px;color:var(--muted)}
+.research-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{border:1px solid var(--line);border-radius:17px;padding:25px;background:white;transition:.25s;box-shadow:0 6px 20px rgba(18,48,74,.04)}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.icon{width:46px;height:46px;border-radius:12px;background:#e6f3f1;display:grid;place-items:center;font-size:22px;margin-bottom:17px}
+.card h3{font-size:17px;color:var(--navy);margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted)}
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.project{min-height:250px;border-radius:18px;padding:27px;color:white;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;position:relative;background:linear-gradient(145deg,#153b54,#247d79)}
+.project:nth-child(2){background:linear-gradient(145deg,#28465a,#a36b3d)}
+.project:nth-child(3){background:linear-gradient(145deg,#15576b,#327d65)}
+.project:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(25deg,transparent 0 24px,rgba(255,255,255,.06) 25px 26px);opacity:.7}
+.project>*{position:relative}
+.project span{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#cdebe5;font-weight:800}
+.project h3{font-size:22px;line-height:1.2;margin:7px 0}
+.project p{font-size:13px;color:#e2f0f0}
+  <nav class="navlinks">
+   <a href="#about">Home</a><a href="#research">Research</a><a href="#projects">Projects</a>
+   <a href="#publications">Publications</a>
+   <a href="#gallery">Gallery</a>
+   <a href="#people">People</a><a href="#activities">Activities</a><a href="#contact">Contact</a>
+  </nav>
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  /* Publications Grid & Cards */
+.publications-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap: 25px;}
+.pub-card {background: white;border: 1px solid var(--line);border-radius: 18px;overflow: hidden;box-shadow: 0 4px 18px rgba(18, 48, 74, 0.05);display: flex;
+  flex-direction: column;transition: transform 0.25s ease, box-shadow 0.25s ease;}
+.pub-card:hover {transform: translateY(-4px);box-shadow: var(--shadow);}
+.pub-cover-wrap {width: 100%;height: 200px;background: #edf3f5;overflow: hidden;border-bottom: 1px solid var(--line);}
+.pub-cover {width: 100%;height: 100%;object-fit: cover;object-position: top center;transition: transform 0.3s ease;}
+.pub-card:hover .pub-cover { transform: scale(1.03);}
+.pub-body {padding: 22px; display: flex; flex-direction: column;flex-grow: 1;}
+.pub-meta {display: flex;align-items: center;gap: 10px;font-size: 12px;font-weight: 700;color: var(--teal);text-transform: uppercase;letter-spacing: 0.8px;margin-bottom: 8px;}
+.pub-meta .pub-date {color: var(--muted);font-weight: 600;}
+.pub-title {font-size: 17px;font-weight: 750;line-height: 1.35;color: var(--navy);margin-bottom: 10px;}
+.pub-title a:hover {color: var(--teal);}
+.pub-authors {font-size: 13.5px;color: #4b5d68;line-height: 1.45;margin-top: auto;padding-top: 10px;}
+.pub-authors strong {color: var(--navy);}
+.pub-actions {margin-top: 14px;padding-top: 12px;border-top: 1px dashed var(--line);display: flex;align-items: center;justify-content: space-between;}
+.pub-journal-tag {font-size: 12px; font-weight: 600; color: var(--blue);background: #ebf3f7;padding: 3px 9px;border-radius: 6px;}
+.pub-link-btn {font-size: 12px;font-weight: 700;color: var(--teal);text-decoration: none;display: inline-flex;align-items: center;gap: 4px;}
+.pub-link-btn:hover {text-decoration: underline;}
+  /* "View More" Card in the 6th slot */
+.view-more-card {background: linear-gradient(145deg, #12304a, #176b87);border: 1px solid var(--blue);border-radius: 18px; color: #ffffff;display: flex;flex-direction: column;align-items: center;justify-content: center;text-align: center;padding: 35px 25px;min-height: 380px;cursor: pointer;transition: transform 0.25s ease, box-shadow 0.25s ease;box-shadow: 0 4px 18px rgba(18, 48, 74, 0.1);}
+.view-more-card:hover {transform: translateY(-4px);box-shadow: var(--shadow);background: linear-gradient(145deg, #0e273c, #1f7895);}
+.view-more-card .vm-icon {font-size: 42px;margin-bottom: 15px;}
+.view-more-card h3 {font-size: 22px;color: #ffffff;font-weight: 800;margin-bottom: 8px;}
+.view-more-card p {font-size: 13.5px;color: #cfe5ec;max-width: 260px;margin-bottom: 18px;}
+.view-more-btn {display: inline-flex;align-items: center;gap: 8px;background: var(--teal);color: #fff;font-size: 13px;font-weight: 700;padding: 10px 20px;border-radius: 25px;border: none;cursor: pointer;transition: all 0.2s ease;}
+.view-more-btn:hover {background: #20746d;}
+/* Slide-out Archive Table Container */
+.archive-table-wrap {display: none;width: 100%;margin-top: 35px;background: #ffffff;border: 1px solid var(--line);border-radius: 18px;padding: 28px 24px;box-shadow: var(--shadow);animation: fadeIn 0.3s ease;}
+.archive-table-wrap.open {display: block;}
+.archive-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 20px;padding-bottom: 14px;border-bottom: 1px solid var(--line);}
+.archive-header h3 {color: var(--navy);font-size: 20px;font-weight: 800;}
+.archive-close-btn {background: none;border: 1px solid var(--line);padding: 6px 14px;border-radius: 20px;font-size: 12px;font-weight: 700;color: var(--navy);cursor: pointer;}
+.archive-close-btn:hover {background: var(--light);}
+/* Responsive Table */
+.pub-table-responsive {width: 100%;overflow-x: auto;}
+.pub-table {width: 100%;border-collapse: collapse;text-align: left;font-size: 13.5px;}
+.pub-table th {background: #edf3f5;color: var(--navy);font-weight: 750;padding: 12px 14px;border-bottom: 2px solid var(--line);white-space: nowrap;}
+.pub-table td {padding: 14px;border-bottom: 1px solid var(--line);vertical-align: top;color: #3f515c;}
+.pub-table tr:hover td {background: #fbfdfe;}
+.pub-table .t-title {color: var(--navy);font-weight: 700;}
+.pub-table .t-journal {color: var(--blue);font-weight: 600;white-space: nowrap;}
+.pub-table .t-link {color: var(--teal);font-weight: 700;white-space: nowrap;}
+  
+.person{border:1px solid var(--line);border-radius:18px;padding:28px;background:white;text-align:center}
+.scholar-link {display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);padding: 5px 12px;border: 1px solid rgba(39, 139, 131, 0.25);border-radius: 20px;background: #f0f7f6;transition: all 0.2s ease;}
+
+.scholar-link:hover {background: var(--teal);color: #fff;border-color: var(--teal);transform: translateY(-1px);}
+  /* Scholar Dropdown Toggle Button */
+.toggle-btn {display: inline-flex;align-items: center;justify-content: center;gap: 6px;margin-top: 14px;font-size: 13px;font-weight: 700;color: #fff;background: var(--navy);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;}
+.toggle-btn:hover {
+  background: var(--teal);
+  transform: translateY(-1px);}
+.toggle-btn .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 11px;}
+.toggle-btn.active .arrow {
+  transform: rotate(180deg);}
+
+/* Permanent Scholars Container */
+.members-drawer {
+  display: block;
+  width: 100%;
+  margin-top: 40px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 40px 35px;
+  box-shadow: var(--shadow);}
+/* 2-Column Members Grid matching the reference layout */
+.scholars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px 25px;}
+.scholar-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;}
+.scholar-photo {
+  width: 135px;
+  height: 135px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--line);}
+.scholar-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;}
+.scholar-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.2;}
+.scholar-role {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+  margin-bottom: 10px;}
+.scholar-interests-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 2px;}
+.scholar-interests-text {
+  font-size: 12.5px;
+  color: #4b5d68;
+  line-height: 1.4;
+  margin-bottom: 12px;}
+
+/* Social / Citation Icon Badges */
+.scholar-links {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;}
+.s-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;}
+.s-icon:hover { transform: translateY(-2px); opacity: 0.9;}
+.s-mail { background: #1389e6; }
+.s-scholar { background: #4285f4; }
+.s-linkedin { background: #0077b5; }
+.s-x { background: #00acee; }
+.s-rg { background: #00ccbb; }
+.s-sc { background: #ff6f00; font-size: 10px; font-weight: 800; }
+
+@media(max-width: 768px) {
+  .scholars-grid {
+    grid-template-columns: 1fr; }}
+.avatar{width:95px;height:95px;margin:0 auto 15px;border-radius:50%;object-fit:cover;display:block;border:3px solid #d9eceb;box-shadow:0 4px 12px rgba(18,48,74,.08);}
+.person h3{color:var(--navy);font-size:18px}.person p{font-size:13px;color:var(--muted)}
+.timeline{border-left:2px solid #cfe1e4;margin-left:10px;padding-left:28px;display:grid;gap:25px}
+.event{position:relative}.event:before{content:"";position:absolute;width:11px;height:11px;background:var(--teal);border-radius:50%;left:-35px;top:7px;border:3px solid white;box-shadow:0 0 0 1px var(--teal)}
+.event strong{color:var(--navy)}.event p{font-size:14px;color:var(--muted);margin-top:3px}
+/* Contact Section Restructured */
+.contact {
+  background: var(--navy);
+  color: white;
+  padding: 55px 0 60px;}
+.contact-header {
+  margin-bottom: 45px;}
+.contact-header h2 {
+  color: white;
+  margin: 10px 0 14px;}
+.contact-header p {
+  color: #cbdde3;
+  font-size: 16px;
+  max-width: 780px;}
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 45px;
+  align-items: stretch;}
+/* Contact Details Side */
+.contact-card-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  padding: 32px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;}
+.contact-card-box h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);}
+.contact-subheading {
+  font-size: 18px;
+  font-weight: 750;
+  color: #ffffff;
+  margin-bottom: 8px;}
+.contact-address {
+  font-size: 14px;
+  color: #cbdde3;
+  line-height: 1.6;
+  margin-bottom: 18px;}
+.contact-entry {
+  font-size: 14px;
+  color: #cbdde3;
+  margin: 7px 0;
+  line-height: 1.5;}
+.contact-entry strong {
+  color: #bfe8df;
+  font-weight: 700;}
+.contact-entry a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;}
+.contact-entry a:hover {
+  color: #bfe8df;}
+/* Social Badges inside Contact Box */
+.contact-social-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);}
+/* Map Side */
+.contact-map-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;}
+.contact-map-box h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;}
+.map-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);}
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;}
+@media(max-width: 900px) {
+  .contact-main-grid {
+    grid-template-columns: 1fr;
+    gap: 35px; }
+  .map-wrapper {
+    min-height: 290px; }}
+footer{background:#0b2233;color:#9fb4bf;padding:25px 0;font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+@media(max-width:900px){
+ .navlinks{display:none}.menu{display:block}.nav-inner{height:68px}
+ .hero-grid{grid-template-columns:1fr;min-height:auto;padding:85px 0}.hero-visual{height:310px}
+ .research-grid{grid-template-columns:repeat(2,1fr)}.project-grid{grid-template-columns:1fr}.people{grid-template-columns:1fr}
+ .about-grid,.contact-grid{grid-template-columns:1fr}.section{padding:40px 0}}
+@media(max-width:560px){
+ h1{font-size:43px}.hero p{font-size:16px}.research-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}
+ .brand{font-size:13px}.brand small{font-size:9px}
+  .ghc-logo{
+    width:42px;
+    height:42px;}
+.cusb-logo{
+    width:44px;
+    height:44px;
+    margin-left:6px;
+    padding-left:6px;}
+.brand-text strong{
+    font-size:14px;}
+.brand-text small{
+    font-size:8px;}}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-inner">
+
+    <a class="brand" href="#home">
+      <img src="images/ghc-logo.png" class="ghc-logo" alt="GeoHydro-Climate Lab Logo">
+      <div class="brand-text">
+        <strong>GeoHydro-Climate Lab</strong>
+        <small>Department of Geology · Central University of South Bihar, Gaya</small>
+      </div>
+      <img src="images/cusb-logo.png" class="cusb-logo" alt="Central University of South Bihar Logo">
+    </a>
+    
+    <nav class="navlinks">
+      <a href="#about">Home</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#people">People</a>
+      <a href="#activities">Activities</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="menu" aria-label="Menu">☰</button>
+
+  </div>
+</header>
+  
+<main>
+
+  <!-- With this: -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-right-content">
+      <h1>GeoHydro-Climate Lab</h1>
+      <div class="eyebrow">Department of Geology · Central University of South Bihar</div>
+      <p>Advancing geospatial science for water, climate, hazards and sustainable communities through interdisciplinary research, Earth observation and data-driven modelling.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#research">Explore Research</a>
+        <a class="btn btn-outline" href="#contact">Connect with the Lab</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+ <div class="container">
+  <div class="about-grid">
+   <div class="section-head">
+    <div class="kicker">About GHC</div>
+    <h2>Welcome to the GeoHydro-Climate Lab.</h2>
+    <p>The GeoHydro-Climate Lab is an interdisciplinary research group at the intersection of geology, hydrology and climate science dedicated to investigating the complex relationships between the earth, water systems and climate focusing on South Bihar region. The overarching goal of the GeoHydro-Climate lab is to observe, analyse, model and understand earth systems to identify pathways towards climate-resilient and sustainable resource management.</p>
+   </div>
+   <div class="about-card">
+    <h3>Our approach</h3>
+    <p>We combine Hydrogeological and Geomorphological analysis, Field investigation, Laboratory analysis, GIS, Remote Sensing and Machine Learning to investigate complex environmental systems.</p>
+    <div class="stats">
+     <div class="stat"><strong>GIS/RS</strong><span>Geospatial Remote Sensing</span></div>
+     <div class="stat"><strong>TerraHydro</strong><span>Earth and Hydrology</span></div>
+     <div class="stat"><strong>AI/ML</strong><span>Data-driven Modelling</span></div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Lab Activities Slideshow -->
+  <div class="slider-container" id="activitySlider">
+    <div class="slider-track" id="sliderTrack">
+
+      <!-- Slide 1x -->
+      <div class="slide" onclick="openLightbox('images/activity1x.png', 'Hands-on field learning on groundwater recharge and sustainable groundwater management.')">
+        <img src="images/activity1x.png" alt="Water quality monitoring">
+        <div class="slide-caption">
+          <span class="gallery-tag">Lab-to-Land Learning</span>
+          <h4>Water quality monitoring</h4>
+          <p>Hands-on field learning on groundwater recharge and sustainable groundwater management.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+     <!-- Slide 1y -->
+      <div class="slide" onclick="openLightbox('images/activity1y.png', 'Group Photograph — Hands-on field learning on groundwater recharge and sustainable groundwater management.')">
+        <img src="images/activity1y.png" alt="Water quality monitoring">
+        <div class="slide-caption">
+          <span class="gallery-tag">Lab-to-Land Learning</span>
+          <h4>Group Photograph</h4>
+          <p>Hands-on field learning on groundwater recharge and sustainable groundwater management.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+      <!-- Slide 1z -->
+      <div class="slide" onclick="openLightbox('images/activity1z.png', 'Swachhta Hi Seva 2026 — एक दिन, एक घंटा, साथ मिलकर CUSB में सफाई अभियान — मिलकर प्रयास, स्वच्छ परिसर और असरदार बदलाव!.')">
+        <img src="images/activity1z.png" alt="Swachhta Hi Seva 2026">
+        <div class="slide-caption">
+          <span class="gallery-tag">#Swachh Bharat</span>
+          <h4>Swachhta Hi Seva 2026</h4>
+          <p> एक दिन, एक घंटा, साथ मिलकर CUSB में सफाई अभियान — मिलकर प्रयास, स्वच्छ परिसर और असरदार बदलाव! </p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+      <!-- Slide 1 -->
+      <div class="slide" onclick="openLightbox('images/activity1.png', 'Earth Day 2026 — Plantation drive on occasion of Earth Day.')">
+        <img src="images/activity1.png" alt="Earth Day 2026">
+        <div class="slide-caption">
+          <span class="gallery-tag">Outreach & Environment</span>
+          <h4>Earth Day 2026</h4>
+          <p>Plantation drive on occasion of Earth Day.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" onclick="openLightbox('images/activity2.png', 'Dissertation Students — M.Sc. Geology 2023-2025 dissertation Students with Supervisor.')">
+        <img src="images/activity2.png" alt="Dissertation Students">
+        <div class="slide-caption">
+          <span class="gallery-tag">Mentorship & Research</span>
+          <h4>Dissertation Students</h4>
+          <p>M.Sc. Geology 2023-2025 dissertation Students with Supervisor.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide" onclick="openLightbox('images/activity3.png', 'Winter school 2024 — Hands on training of Geospatial Technologies.')">
+        <img src="images/activity3.png" alt="Winter school 2024">
+        <div class="slide-caption">
+          <span class="gallery-tag">Workshop & Training</span>
+          <h4>Winter school 2024</h4>
+          <p>Hands on training of Geospatial Technologies.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide" onclick="openLightbox('images/activity4.png', 'Lab Visit by domain Expert — Dr. Sansar Raj and Mr. B. D. Boogaard.')">
+        <img src="images/activity4.png" alt="Lab Visit">
+        <div class="slide-caption">
+          <span class="gallery-tag">Academic Collaboration</span>
+          <h4>Lab Visit by domain Expert</h4>
+          <p>Dr. Sansar Raj from Department of Geosciences, University of Padova, Italy, along with Mr. B. D. Boogaard researcher from ITC, Netherlands.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="slide" onclick="openLightbox('images/activity5.png', 'Lifetime Achievement Award for Water resources to Prof. Prafull Singh By Arif Mohammad Khan.')">
+        <img src="images/activity5.png" alt="Lifetime Achievement Award">
+        <div class="slide-caption">
+          <span class="gallery-tag">Milestones & Honors</span>
+          <h4>Lifetime Achievement Award</h4>
+          <p>Lifetime Achievement Award for Water resources to Prof. Prafull Singh By Arif Mohammad Khan (Governor of Bihar).</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="slide" onclick="openLightbox('images/activity6.png', 'Flag March on Earth Day 2025 — Inaugurated by Hon. VC K.N. Singh.')">
+        <img src="images/activity6.png" alt="Flag March on Earth Day 2025">
+        <div class="slide-caption">
+          <span class="gallery-tag">Outreach & Awareness</span>
+          <h4>Flag March on Earth Day 2025</h4>
+          <p>Inaugurated by Hon. VC K.N. Singh on occasion of Earth Day 2025.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="slider-btn prev" onclick="moveSlide(-1)" aria-label="Previous Slide">&#10094;</button>
+    <button class="slider-btn next" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>
+
+    <!-- Navigation Dots (6 dots matching all 6 slides) -->
+    <div class="slider-dots" id="sliderDots">
+      <button class="slider-dot active" onclick="jumpToSlide(0)"></button>
+      <button class="slider-dot" onclick="jumpToSlide(1)"></button>
+      <button class="slider-dot" onclick="jumpToSlide(2)"></button>
+      <button class="slider-dot" onclick="jumpToSlide(3)"></button>
+      <button class="slider-dot" onclick="jumpToSlide(4)"></button>
+      <button class="slider-dot" onclick="jumpToSlide(5)"></button>
+    </div>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="research">
+ <div class="container">
+  <div class="section-head"><div class="kicker">Research Areas</div><h2>Interdisciplinary research for a changing Earth.</h2><p>Our research spans Geo-environmental processes, hazards, geospatial technologies , training capacity building and community resilience.</p></div>
+  <div class="research-grid">
+   <div class="card"><div class="icon">🌊</div><h3>Hydrology & Land-Atmosphere interactions</h3><p>Hydrological processes, Social Hydrology, Watershed dynamics, Hydrochemistry, Groundwater and hydro-climatic variability.</p></div>
+   <div class="card"><div class="icon">🌧️🌍</div><h3>Climate change & Extreme events</h3><p>Climate Variability, hydroclimatic extremes, Geohazards, Land water climate nexus, Flood hazards, River rejuvenation.</p></div>
+   <div class="card"><div class="icon">🛰️🤖</div><h3>Remote Sensing GIS & AI/ML</h3><p>Earth observations, landscape monitoring, Geospatial analysis & Cloud Computing, Explainable and data-driven approaches for hydrological & environmental modelling .</p></div>
+   <div class="card"><div class="icon">🏔️🌱</div><h3>Sustainable development</h3><p>Community resilience, Capacity Building, Decision support system, Shared Socio-Economic Pathways(SSPs).</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="projects">
+ <div class="container">
+  <div class="section-head"><div class="kicker">Selected Research</div><h2>From local landscapes to regional-scale challenges.</h2></div>
+  <div class="project-grid">
+   <article class="project"><span>Soil Erosion · Watershed Management</span><h3>Hydrological modelling Phalgu River Basin</h3><p>Integrated Groundwater management through Hybrid approaches.</p></article>
+    <article class="project"><span>Hydrogeochemistry · Groundwater Dynamics</span><h3>Groundwater resource assessment & management</h3><p>Integrated approach towards sustainable use of Groundwater resource.</p></article>
+    <article class="project"><span>Flood Prediction · Climate · AI/ML</span><h3> River Basin</h3><p>Integrated flood-risk assessment using Earth observation, hydrological modelling, climate scenarios and machine learning for Community Resilience.</p></article>
+   <article class="project"><span>Groundwater · Remote Sensing · AI/ML · Wetlands · Climatology</span><h3>Geospatial Analysis: Groundwater, Wetlands & Climate</h3><p>Multi-source geospatial modelling of Groundwater prospects, Wetlands, Climate Dynamics and Hydrogeological variability.</p></article>
+   <article class="project"><span>Groundwater · Remote Sensing · AI/ML · Wetlands · Climatology</span><h3>Geospatial Analysis: Groundwater, Wetlands & Climate</h3><p>Multi-source geospatial modelling of Groundwater prospects, Wetlands, Climate Dynamics and Hydrogeological variability.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="publications">
+ <div class="container">
+  <div class="section-head">
+   <div class="kicker">Scholarly Output</div>
+   <h2>Publications</h2>
+   <p>Peer-reviewed articles, journal publications, and scientific contributions from the GeoHydro-Climate Lab.</p>
+  </div>
+
+  <!-- JavaScript will inject cards 1 to 5 and the 6th View More card here -->
+  <div class="publications-grid" id="publicationsGrid"></div>
+
+  <!-- The table that opens when View More is clicked -->
+  <div class="archive-table-wrap" id="archiveTableContainer">
+    <div class="archive-header">
+      <h3>All Laboratory Publications</h3>
+      <button class="archive-close-btn" type="button" onclick="togglePublicationTable()">Close Table ✕</button>
+    </div>
+    <div class="pub-table-responsive">
+      <table class="pub-table">
+        <thead>
+          <tr>
+            <th style="width: 50px;">#</th>
+            <th style="width: 115px;">Date</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Journal</th>
+            <th style="width: 80px;">Link</th>
+          </tr>
+        </thead>
+        <tbody id="archiveTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+ </div>
+</section>
+  
+  <!-- News & Gallery Section -->
+<section class="section" id="gallery">
+ <div class="container">
+  <div class="section-head">
+   <div class="kicker">Updates & Highlights</div>
+   <h2>News & Gallery</h2>
+   <p>Recent events, field investigations, laboratory milestones, and academic conferences from the GeoHydro-Climate Lab.</p>
+  </div>
+
+  <div class="gallery-slider-wrap" id="gallerySlider">
+    <div class="gallery-track" id="galleryTrack">
+
+      <!-- Slide 1y -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery1y.png', 'Prof. Prafull Kumar Singh delivered an invited talk and had academic interactions .')">
+        <img src="images/gallery1y.png" alt="National Conference Presentation">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Lecture</span>
+          <h3>Department of Earth & Planetary Sciences, Faculty of Science, Veer Bahadur Singh University, Jaunpur</h3>
+          <p>Prof. Prafull Kumar Singh delivered an invited talk and had academic interactions .</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+      <!-- Slide 1z -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery1z.png', 'Hands-on field learning on groundwater recharge and sustainable groundwater management.')">
+        <img src="images/gallery1z.png" alt="Lab-to-Land Learning">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Lab-to-Land Learning</span>
+          <h3>Water Quality Assessment</h3>
+          <p>Hands-on field learning on groundwater recharge and sustainable groundwater management.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+      <!-- Slide 1 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery1.png', 'Prof. Prafull Kumar Singh delivered a keynote lecture  insights on Groundwater recharge prospects of Bihar.')">
+        <img src="images/gallery1.png" alt="National Conference Presentation">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Conference & Workshop</span>
+          <h3>INGWC Conference at IIT (ISM) Dhanbad</h3>
+          <p>Prof. Prafull Kumar Singh delivered a keynote lecture  insights on Groundwater recharge prospects of Bihar.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery2.png', 'Prof. Prafull Kumar Singh has been selected as a member of the National Academy of Sciences, India (NASI), 2026.')">
+        <img src="images/gallery2.png" alt="Field Research Work">
+        <div class="gallery-caption">
+          <span class="gallery-tag"> Milestones</span>
+          <h3>Membership of the National Academy of Sciences, India (NASI)</h3>
+          <p>Prof. Prafull Kumar Singh has been selected as a member of the National Academy of Sciences, India (NASI), 2026.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery3.png', 'Prof. Prafull Kumar Singh delivered an invited talk at National conference on Geoscience and climate change for sustainable environment.')">
+        <img src="images/gallery3.png" alt="Lab Hands-on Training">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Conference & Workshop</span>
+          <h3>GEOCON 2026 conference, Lucknow University.</h3>
+          <p>Prof. Prafull Kumar Singh delivered an invited talk at National conference on Geoscience and climate change for sustainable environment.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+      <!-- Slide 4 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery4.png', 'Prof. K.N.Singh , HVC of the university was the chief guest of the program. Prof. Singh in his inaugural address highlights the importance of Geospatial Technology and its wider applications and  support to achive the  SDGs goals.')">
+        <img src="images/gallery4.png" alt="National Conference Presentation">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Conference & Workshop</span>
+          <h3>03-Week Winter School in Geospatial Science and Technology</h3>
+          <p>Prof. K.N.Singh , HVC of the university was the chief guest of the program. Prof. Singh in his inaugural address highlights the importance of Geospatial Technology and its wider applications and  support to achive the  SDGs goals.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery5.png', 'News Articles for 03-Week Winter School organised by Dept. of Geology')">
+        <img src="images/gallery5.png" alt="Field Research Work">
+        <div class="gallery-caption">
+          <span class="gallery-tag">News Articles</span>
+          <h3>03-Week Winter School</h3>
+          <p>News Articles for 03-Week Winter School organised by Dept. of Geology.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery6.png', 'News Articles for 03-Week Winter School organised by Dept. of Geology.')">
+        <img src="images/gallery6.png" alt="Lab Hands-on Training">
+        <div class="gallery-caption">
+          <span class="gallery-tag">News Articles</span>
+          <h3>03-Week Winter School</h3>
+          <p>News Articles for 03-Week Winter School organised by Dept. of Geology.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 7 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery7.png', 'News Articles for 03-Week Winter School organised by Dept. of Geology')">
+        <img src="images/gallery7.png" alt="National Conference Presentation">
+        <div class="gallery-caption">
+          <span class="gallery-tag">News Articles</span>
+          <h3>03-Week Winter School</h3>
+          <p>News Articles for 03-Week Winter School organised by Dept. of Geology.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 8 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery8.png', ' Prof. Prafull Kumar Singh with his team in collaboration with Niranjana Mission,studied the condition of wells from Gaya to Chatra district in the month of May.')">
+        <img src="images/gallery8.png" alt="Field Research Work">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Field Investigation</span>
+          <h3>Lab To Land Program of CUSB</h3>
+          <p> Prof. Prafull Kumar Singh with his team in collaboration with Niranjana Mission,studied the condition of wells from Gaya to Chatra district in the month of May.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 9 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery9.png', 'Work on river rejuvenation and restoration Covered in Times of India and other Hindi Newspapers')">
+        <img src="images/gallery9.png" alt="Lab Hands-on Training">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Detailed Study</span>
+          <h3>Work on river rejuvenation and restoration</h3>
+          <p>Covered in Times of India and other Hindi Newspapers.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 10 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery10.png', 'Prof. Prafull Kumar Singh with his team in collaboration with Niranjana Mission,studied the condition of wells.')">
+        <img src="images/gallery10.png" alt="National Conference Presentation">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Field Investigation</span>
+          <h3>Lab To Land Program of CUSB</h3>
+          <p>Prof. Prafull Kumar Singh with his team in collaboration with Niranjana Mission,studied the condition of wells.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 11 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery11.png', 'Study of vertical joints in Kakolat waterfall.')">
+        <img src="images/gallery11.png" alt="Field Research Work">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Field Investigation</span>
+          <h3>Fieldwork of study area</h3>
+          <p>Study of vertical joints in Kakolat waterfall.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 12 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery12.png', 'Awarenes program on tha ocassion of Earth day celebrated in Junior High School, Nepa')">
+        <img src="images/gallery12.png" alt="Lab Hands-on Training">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Earth Day 2023</span>
+          <h3>Awareness Program</h3>
+          <p>Awarenes program on tha ocassion of Earth day celebrated in Junior High School, Nepa.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+      <!-- Slide 13 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery13.png', 'Study of vertical joints in Kakolat waterfall.')">
+        <img src="images/gallery13.png" alt="Lab Hands-on Training">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Field Investigation</span>
+          <h3>Fieldwork of study area</h3>
+          <p>Study of vertical joints in Kakolat waterfall.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 14 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery14.png', 'Study of vertical joints in Kakolat waterfall.')">
+        <img src="images/gallery14.png" alt="National Conference Presentation">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Field Investigation</span>
+          <h3>Fieldwork of study area</h3>
+          <p>Study of vertical joints in Kakolat waterfall.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 15 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery15.png', 'Information Given on Dynamic Triggering of Earthquakes and Vibrations.')">
+        <img src="images/gallery15.png" alt="Field Research Work">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Training Awareness</span>
+          <h3>The Indian Geophysical Union (IGU) - Anni Talwani Memorial Prize Lecture.</h3>
+          <p>Information Given on Dynamic Triggering of Earthquakes and Vibrations.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+
+      <!-- Slide 16 -->
+      <div class="gallery-slide" onclick="openLightbox('images/gallery16.png', 'Study of Structures of Kakolat waterfall')">
+        <img src="images/gallery16.png" alt="Lab Hands-on Training">
+        <div class="gallery-caption">
+          <span class="gallery-tag">Field Work</span>
+          <h3>Kakolat Waterfall Structures</h3>
+          <p>Study of Structures of Kakolat waterfall.</p>
+          <span class="gallery-hint">🔍 Click to enlarge photo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button class="slider-btn prev" onclick="moveGallerySlide(-1)" aria-label="Previous Slide">&#10094;</button>
+    <button class="slider-btn next" onclick="moveGallerySlide(1)" aria-label="Next Slide">&#10095;</button>
+
+    <!-- Indicators -->
+    <div class="slider-dots" id="galleryDots">
+      <button class="slider-dot active" onclick="jumpToGallerySlide(0)"></button>
+      <button class="slider-dot" onclick="jumpToGallerySlide(1)"></button>
+      <button class="slider-dot" onclick="jumpToGallerySlide(2)"></button>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- Full-Screen Lightbox Modal -->
+<div class="gallery-modal" id="galleryModal" onclick="closeLightbox(event)">
+  <button class="modal-close-btn" onclick="closeLightbox(event)" aria-label="Close Fullscreen">&times;</button>
+  <div class="modal-content-wrap" onclick="event.stopPropagation()">
+    <img id="modalImg" src="" alt="Fullscreen Image" class="modal-image">
+    <div id="modalCaption" class="modal-caption-text"></div>
+  </div>
+</div>
+  
+<section class="section alt" id="people">
+ <div class="container">
+  <div class="section-head">
+    <div class="kicker">Team</div>
+    <h2>Researchers, Scholars and learners.</h2>
+    <p>GHC Lab supports collaborative research, doctoral work, student projects and hands-on geospatial learning.</p>
+  </div>
+
+  <!-- Principal Investigator -->
+  <div class="person" style="max-width: 480px; margin: 0 auto 30px;">
+    <img src="images/pks1.png" alt="Prof. (Dr.) Prafull Kumar Singh" class="avatar">
+    <h3>Prof. Prafull Kumar Singh</h3>
+    <p>Department of Geology<br></p>
+    
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+      <a href="https://scholar.google.com/citations?user=OedZhWUAAAAJ" target="_blank" rel="noopener noreferrer" class="scholar-link" style="margin-top: 0;">
+        🎓 Google Scholar
+      </a>
+      <a href="mailto:prafullsingh@cusb.ac.in" class="s-icon s-mail" title="Email">✉</a>
+      <a href="https://www.linkedin.com/in/prof-prafull-kumar-singh-35748b8/" target="_blank" class="s-icon s-linkedin" title="LinkedIn">in</a>
+      <a href="https://www.scopus.com/authid/detail.uri?authorId=54394070900" target="_blank" class="s-icon s-sc" title="SCOPUS">SC</a>
+      <a href="https://www.researchgate.net/profile/Prof-Singh-7" target="_blank" class="s-icon s-rg" title="ResearchGate">R<sup>G</sup></a>
+    </div>
+  </div>
+
+  <!-- Permanent Members Grid -->
+  <div class="members-drawer">
+    <h3 class="drawer-title">Doctoral Members & Researchers</h3>
+    <div class="scholars-grid">
+
+      <!-- Bibhukalyan Mohapatra -->
+      <div class="scholar-profile">
+        <img src="images/scholar1.png" alt="Bibhukalyan Mohapatra" class="scholar-photo">
+        <div class="scholar-info">
+          <div class="scholar-name">Bibhukalyan Mohapatra</div>
+          <div class="scholar-role">PhD Research Scholar</div>
+          <div class="scholar-interests-label">Research Interests:</div>
+          <div class="scholar-interests-text">Hydrogeology and groundwater modelling</div>
+          <div class="scholar-links">
+            <a href="mailto:geobibhu2015@gmail.com" class="s-icon s-mail" title="Email">✉</a>
+            <a href="#" target="_blank" class="s-icon s-scholar" title="Google Scholar">G</a>
+            <a href="https://www.linkedin.com/in/bibhukalyan-mohapatra-243956173/" target="_blank" class="s-icon s-linkedin" title="LinkedIn">in</a>
+            <a href="#" target="_blank" class="s-icon s-x" title="Twitter / X">🐦</a>
+            <a href="https://www.researchgate.net/profile/Bibhukalyan-Mohapatra" target="_blank" class="s-icon s-rg" title="ResearchGate">R<sup>G</sup></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suman Kumar -->
+      <div class="scholar-profile">
+        <img src="images/scholar2.png" alt="Suman Kumar" class="scholar-photo">
+        <div class="scholar-info">
+          <div class="scholar-name">Suman Kumar</div>
+          <div class="scholar-role">PhD Research Scholar (Project Associate)</div>
+          <div class="scholar-interests-label">Research Interests:</div>
+          <div class="scholar-interests-text">Hydro-geochemistry and Groundwater modelling</div>
+          <div class="scholar-links">
+            <a href="mailto:sumankumar@cusb.ac.in" class="s-icon s-mail" title="Email">✉</a>
+            <a href="#" target="_blank" class="s-icon s-scholar" title="Google Scholar">G</a>
+            <a href="https://www.linkedin.com/in/suman-kumar-7778ab260/" target="_blank" class="s-icon s-linkedin" title="LinkedIn">in</a>
+            <a href="#" target="_blank" class="s-icon s-x" title="Twitter / X">🐦</a>
+            <a href="#" target="_blank" class="s-icon s-rg" title="ResearchGate">R<sup>G</sup></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ankit Kumar -->
+      <div class="scholar-profile">
+        <img src="images/scholar3.png" alt="Ankit Kumar" class="scholar-photo">
+        <div class="scholar-info">
+          <div class="scholar-name">Ankit Kumar</div>
+          <div class="scholar-role">PhD Research Scholar</div>
+          <div class="scholar-interests-label">Research Interests:</div>
+          <div class="scholar-interests-text">Flood, Climate, Remote Sensing, Machine Learning</div>
+          <div class="scholar-links">
+            <a href="mailto:kumarankit.4286@gmail.com" class="s-icon s-mail" title="Email">✉</a>
+            <a href="#" target="_blank" class="s-icon s-scholar" title="Google Scholar">G</a>
+            <a href="https://www.linkedin.com/in/kumar-ankit-326652172/" target="_blank" class="s-icon s-linkedin" title="LinkedIn">in</a>
+            <a href="#" target="_blank" class="s-icon s-x" title="Twitter / X">🐦</a>
+            <a href="#" target="_blank" class="s-icon s-rg" title="ResearchGate">R<sup>G</sup></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ishita -->
+      <div class="scholar-profile">
+        <img src="images/scholar4.png" alt="Ishita" class="scholar-photo">
+        <div class="scholar-info">
+          <div class="scholar-name">Ishita</div>
+          <div class="scholar-role">PhD Research Scholar</div>
+          <div class="scholar-interests-label">Research Interests:</div>
+          <div class="scholar-interests-text">Hydro-geochemistry, Surface–Atmosphere interactions, climate change</div>
+          <div class="scholar-links">
+            <a href="mailto:ishita.singh8228@gmail.com" class="s-icon s-mail" title="Email">✉</a>
+            <a href="#" target="_blank" class="s-icon s-scholar" title="Google Scholar">G</a>
+            <a href="#" target="_blank" class="s-icon s-linkedin" title="LinkedIn">in</a>
+            <a href="#" target="_blank" class="s-icon s-rg" title="ResearchGate">R<sup>G</sup></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gautam Kumar -->
+      <div class="scholar-profile">
+        <img src="images/scholar5.png" alt="Gautam Kumar" class="scholar-photo">
+        <div class="scholar-info">
+          <div class="scholar-name">Gautam Kumar</div>
+          <div class="scholar-role">Project Associate</div>
+          <div class="scholar-interests-label">Research Interests:</div>
+          <div class="scholar-interests-text">Groundwater, Remote Sensing, AI/ML, Wetlands, Climatology</div>
+          <div class="scholar-links">
+            <a href="mailto:gautamsingh9128@gmail.com" class="s-icon s-mail" title="Email">✉</a>
+            <a href="#" target="_blank" class="s-icon s-scholar" title="Google Scholar">G</a>
+            <a href="https://www.linkedin.com/in/gautam-kumar-singh-867544247/" target="_blank" class="s-icon s-linkedin" title="LinkedIn">in</a>
+            <a href="https://x.com/gautamsingh9128" target="_blank" class="s-icon s-x" title="Twitter / X">🐦</a>
+            <a href="https://www.researchgate.net/profile/Gautam-Kumar-86?ev=hdr_xprf" target="_blank" class="s-icon s-rg" title="ResearchGate">R<sup>G</sup></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+ </div>
+</section>
+  
+<section class="section" id="activities">
+ <div class="container">
+  <div class="section-head"><div class="kicker">Lab Facilities and Equipments</div><h2>Research beyond the desk.</h2></div>
+  <div class="timeline">
+   <div class="event"><strong>Field-based learning</strong><p>Multiparameter probe for pH, EC, TDS, Temperature and Dissolved Oxygen, hydrological and geospatial field investigations.</p></div>
+   <div class="event"><strong>Training & capacity building</strong><p>Hands-on learning in GIS, remote sensing, geospatial modelling and research workflows.</p></div>
+    <div class="event"><strong>Computing and Softwares</strong><p>ArcGIS, QGIS, GeoMedia, Erdas Imagine for Spatial Analysis and Geochemical plotting Softwares(Piper, Gibbs).</p></div>
+   <div class="event"><strong>Research seminars & workshops</strong><p>Knowledge exchange through academic discussions, demonstrations and collaborative activities.</p></div>
+   <div class="event"><strong>Environment & outreach</strong><p>Participation in Earth Day, World Environment Day, plantation and community-oriented activities.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section contact" id="contact">
+ <div class="container">
+  
+  <!-- Header on Top -->
+  <div class="contact-header">
+   <div class="kicker">Get in touch</div>
+   <h2>Connect with GeoHydro-Climate Lab.</h2>
+   <p>For Doctoral & Post-Doctoral Research, Master's Dissertation, Student opportunities, Training, Research Collaboration, Academic activities or geospatial research discussions, contact the GeoHydro-Climate Lab, Department of Geology.</p>
+  </div>
+
+  <!-- Bottom Two-Column Split (Contact Info + Map) -->
+  <div class="contact-main-grid">
+
+   <!-- Left Column: Contact Details -->
+   <div class="contact-card-box">
+    <div>
+      <h3>Contact Details</h3>
+      <div class="contact-subheading">Prof. Prafull Kumar Singh</div>
+      <div class="contact-address">
+        Department of Geology, 3rd floor, School of Earth, Biological and Environmental Sciences<br>
+        Central University of South Bihar (CUSB)<br>
+        NH-120, Gaya-Panchanpur Road, Gaya, Bihar – 824236, India
+      </div>
+
+      <div class="contact-entry">
+        <strong>Phone:</strong> +91 9958196406
+      </div>
+      <div class="contact-entry">
+        <strong>Email:</strong> <a href="mailto:prafullsingh@cusb.ac.in">prafullsingh@cusb.ac.in</a>
+      </div>
+      <div class="contact-entry">
+        <strong>Lab Email:</strong> <a href="mailto:geohydroclimatelab.cusb@gmail.com">geohydroclimatelab.cusb@gmail.com</a>
+      </div>
+    </div>
+ 
+   </div>
+
+   <!-- Right Column: Interactive Google Map -->
+   <div class="contact-map-box">
+    <h3>Lab location</h3>
+    <div class="map-wrapper">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232.70876266658954!2d84.89235507656736!3d24.875724058844042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398d2b4a4222b113%3A0xaf3a04e2993c9e8f!2sDepartment%20of%20Geology%2C%20Central%20University%20of%20South%20Bihar!5e1!3m2!1sen!2sin!4v1790589884146!5m2!1sen!2sin" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+   </div>
+
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container footer-inner">
+  <div>© 2026 GeoHydro-Climate Lab · Department of Geology · CUSB GayaJi</div>
+  <div>Research · Hydro-Climate · Geospatial Science · Sustainability</div>
+ </div>
+</footer>
+
+<script>
+// Mobile navigation menu toggle
+const menu = document.querySelector('.menu');
+const nav = document.querySelector('.navlinks');
+menu.addEventListener('click', () => {
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+  nav.style.flexDirection = 'column';
+  nav.style.position = 'absolute';
+  nav.style.top = '68px';
+  nav.style.right = '4%';
+  nav.style.background = 'white';
+  nav.style.padding = '18px 22px';
+  nav.style.border = '1px solid #dbe6eb';
+  nav.style.borderRadius = '12px';
+});
+
+  let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const track = document.getElementById('sliderTrack');
+const dots = document.querySelectorAll('.slider-dot');
+let slideInterval;
+
+function updateSlider() {
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+}
+
+function moveSlide(direction) {
+  currentSlide = (currentSlide + direction + slides.length) % slides.length;
+  updateSlider();
+  resetAutoSlide();
+}
+
+function jumpToSlide(index) {
+  currentSlide = index;
+  updateSlider();
+  resetAutoSlide();
+}
+
+function startAutoSlide() {
+  slideInterval = setInterval(() => {
+    moveSlide(1);
+  }, 4500); // Transitions every 4.5 seconds
+}
+
+function resetAutoSlide() {
+  clearInterval(slideInterval);
+  startAutoSlide();
+}
+
+// Start auto-rotation on load
+startAutoSlide();
+  // News & Gallery Carousel Logic
+let currentGallerySlide = 0;
+const gallerySlides = document.querySelectorAll('.gallery-slide');
+const galleryTrack = document.getElementById('galleryTrack');
+const galleryDots = document.querySelectorAll('#galleryDots .slider-dot');
+let galleryInterval;
+
+function updateGallerySlider() {
+  if (!galleryTrack) return;
+  galleryTrack.style.transform = `translateX(-${currentGallerySlide * 100}%)`;
+  galleryDots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentGallerySlide);
+  });
+}
+
+function moveGallerySlide(direction) {
+  if (!gallerySlides.length) return;
+  currentGallerySlide = (currentGallerySlide + direction + gallerySlides.length) % gallerySlides.length;
+  updateGallerySlider();
+  resetGalleryAutoSlide();
+}
+
+function jumpToGallerySlide(index) {
+  currentGallerySlide = index;
+  updateGallerySlider();
+  resetGalleryAutoSlide();
+}
+
+function startGalleryAutoSlide() {
+  galleryInterval = setInterval(() => {
+    moveGallerySlide(1);
+  }, 5000);
+}
+
+function resetGalleryAutoSlide() {
+  clearInterval(galleryInterval);
+  startGalleryAutoSlide();
+}
+
+function openLightbox(imageSrc, captionText) {
+  const modal = document.getElementById('galleryModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  
+  modalImg.src = imageSrc;
+  modalCaption.textContent = captionText;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Pause sliders while viewing modal
+  clearInterval(slideInterval);
+  clearInterval(galleryInterval);
+}
+
+function closeLightbox(e) {
+  if (e) e.stopPropagation();
+  const modal = document.getElementById('galleryModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  
+  // Resume sliders
+  startAutoSlide();
+  startGalleryAutoSlide();
+}
+// Initialize Gallery slider
+startGalleryAutoSlide();
+  
+  // Master publication list (always keep newest at index 0)
+const allPublications = [
+  {title: "Assessment of drought dynamics in the phalgu river basin, middle ganga plain, based on CHIRPS and MODIS- derived indices",
+    authors: "Bibhukalyan Mohapatra, Prafull Kumar Singh",
+    journal: "Scientific Reports",
+    date: "August 2026",
+    doi: "https://doi.org/10.1038/s41598-026-68023-6",
+    image: "images/paper1.png"},
+  {title: "Leveraging Google Earth Engine for groundwater sustainability underchanging climatic conditions",
+    authors: "Suman Kumar, Prafull Kumar Singh",
+    journal: "Proceedings of the Indian National Science Academy",
+    date: "April 2026",
+    doi: "https://doi.org/10.1007/s43538-026-00775-1",
+    image: "images/paper2.png"},
+  {title: "PCA-WSA based hybrid modeling approach for sub-watershedprioritization of Phalgu River Basin, Middle Ganga Plain, India",
+    authors: "Bibhukalyan Mohapatra, Prafull Kumar Singh",
+    journal: "Spatial Information Research",
+    date: "January 2026",
+    doi: "https://doi.org/10.1007/s41324-025-00657-6",
+    image: "images/paper3.png"},
+  {title: "Flood risk assessment of Aurangabad, Middle Ganga plan, using geospatial data",
+    authors: "Sumo Ranjan Mandal, Ankit Kumar, Prafull Kumar Singh",
+    journal: "Proceedings of the Indian National Science Academy",
+    date: "September 2025",
+    doi: "https://doi.org/10.1007/s43538-025-00523-x",
+    image: "images/paper4.png"},
+  {title: "Determining shallow S-Wave velocity structure and site response parameters in Gwalior basin, Central India, through microtremor measurements",
+    authors: "Akash Rajput, Ajay Pratap Singh, S.K.Pal, Prafull Singh",
+    journal: "Near Surface Geophysics",
+    date: "December 2024",
+    doi: "https://doi.org/10.1002/nsg.12328",
+    image: "images/paper5.png"},
+  {title: "Confirmation of Nature of Palaeo-course of Assi River, India: Some Significant Revelations from Electrical Resistivity Tomography. ",
+    authors: "Mallikarjun Mishra, Sanjay Rana, P.K Rai, Prafull Singh",
+    journal: "Journal of the Geological Society of India",
+    date: "2024",
+    doi: "https://doi.org/10.17491/jgsi/2024/174045",
+    image: "images/paper6.png"},
+  {title: "A Note on Spectacular Geodiversity and Cultural Sites in and Around Gaya-Rajgir Region of Bihar, India: Prospect for Geoheritage and Geotourism.",
+    authors: "K.M. Kumar Sharma, S Ranabir, N. A Singh, Prafull Singh",
+    journal: "Geoheritage",
+    date: "2024",
+    doi: "https://doi.org/10.1007/s12371-024-00994-2",
+    image: "images/paper7.png"},
+  {title: "Geospatial Technology in Groundwater Recharge Potential Assessment using multi-criteria decision-making approach.",
+    authors: "Prafull Singh, Pradipika Verma, Shahnawaz S, Shailesh Kumar Singh",
+    journal: "CURRENT SCIENCE",
+    date: "2024",
+    doi: "https://doi.org/10.18520/cs/v126/i7/827-836",
+    image: "images/paper8.png"},
+  {title: "Urban Heat Island estimation using LULC, NDVI and NDBI: A case Study of Bhopal City, India.",
+    authors: "Prafull Singh, Pradipika Verma , A. S Chaudhuri, Vivek Singh and P. K. Rai ",
+    journal: "International Journal of Environmental Science and Technology",
+    date: "2024",
+    doi: "https://doi.org/10.1007/s13762-023-05141-y",
+    image: "images/paper9.png"},
+  {title: "Landslide Susceptibility Prediction using Frequency Ratio Model: A Case Study of Uttarakhand, Himalaya (India).",
+    authors: "Prafull Singh, Ujjwal Sur, P. K. Rai and S.K Singh",
+    journal: "Proceedings of the Indian National Science Academy",
+    date: "2023",
+    doi: "https://doi.org/10.1007/s43538-023-00171-z",
+    image: "images/paper10.png"},
+  {title: "A holistic review on trend, occurrence, factors affecting pesticide concentration, and ecological risk assessment.",
+    authors: "Singh, R.P., Mahajan, M., Gandhi, K. Prafull Singh ",
+    journal: "Environmental Monitoring and Assessment",
+    date: "2023",
+    doi: "https://doi.org/10.1007/s10661-023-11005-2",
+    image: "images/paper11.png"},
+  {title: "Spatio-temporal dynamics of land use/cover and land surface temperature in Prayagraj city, India.",
+    authors: "Srivastava A, Shukla S, Singh Prafull, Jha PK. ",
+    journal: "Indoor and Built Environment",
+    date: "2023",
+    doi: "https://doi.org/10.1177/1420326X231159633",
+    image: "images/paper12.png"},
+  {title: "Earth Observation data sets in Monitoring of Urbanization and Urban Heat Island of Delhi, India.",
+    authors: "Prafull Singh, A. S Chaudhuri, Pradipika Verma and Vivek Singh ",
+    journal: "Geomatics, Natural Hazards and Risk",
+    date: "2022",
+    doi: "https://doi.org/10.1080/19475705.2022.2097452",
+    image: "images/paper13.png"},
+  {title: "Predicting Landslides Susceptible Zones in the Lesser Himalayas by Ensemble of Per Pixel and Object-Based Models.",
+    authors: "Sur, U., Prafull Singh* Meena, S.R.; Singh, T.N. ",
+    journal: "Remote Sensing",
+    date: "2022",
+    doi: "https://doi.org/10.3390/rs14081953",
+    image: "images/paper14.png"},
+  {title: "Decadal trend analysis of rainfall patterns of past 115 years & its impact on Sikkim, India",
+    authors: "Aman Kakkar, P. K. Rai, V. N. Mishra, Prafull Singh ",
+    journal: "Remote Sensing Applications: Society and Environment ",
+    date: "2022",
+    doi: "https://doi.org/10.1016/j.rsase.2022.100738.",
+    image: "images/paper15.png"},
+  {title: "A machine learning-based classification of LANDSAT images to map land use and land cover of India",
+    authors: "R.K.Singh, Prafull Singh, Martin Drews ",
+    journal: "Remote Sensing Applications: Society and Environment.",
+    date: "2021",
+    doi: "https://doi.org/10.1016/j.rsase.2021.100624",
+    image: "images/paper16.png"},
+  {title: "Computation of Groundwater Recharge prospect in urban environment for sustainable water security",
+    authors: "Anindita Sarkar Chaudhuri, Prafull Singh*, Pradipika verma, S. C. Rai ",
+    journal: "Arabian Journal of Geoscience",
+    date: "2021",
+    doi: "https://doi.org/10.1007/s12517-021-06904-y",
+    image: "images/paper17.png"},
+  {title: "Landslide probability mapping by considering fuzzy numerical risk factor (FNRF) and landscape change for road corridor of Uttarakhand, India.",
+    authors: "Ujjwal Sur and Prafull Singh*",
+    journal: "Environment, Development and Sustainability",
+    date: "2021",
+    doi: "https://doi.org/10.1007/s10668-021-01226-1",
+    image: "images/paper18.png"},
+  {title: "Landslide Susceptibility Assessment in a Lesser Himalayan Road Corridor (India) applying Fuzzy AHP technique and Earth-Observation data.",
+    authors: "Ujjwal Sur and Prafull Singh*, Sansar Raj Meena ",
+    journal: "Geomatics, Natural Hazards and Risk",
+    date: "2020",
+    doi: "https://doi.org/10.1080/19475705.2020.1836038",
+    image: "images/paper19.png"},
+  {title: "Comparative landslide susceptibility assessment using statistical information value and index of entropy model in Bhanupali-Beri region, Himachal Pradesh, India.",
+    authors: "Prafull Singh*, Ankit Sharma, Ujjwal Sur, P.K.Rai",
+    journal: "Environment, Development and Sustainability",
+    date: "2020",
+    doi: "https://doi.org/10.1007/s10668-020-00811-0",
+    image: "images/paper20.png"},
+  {title: "Assessment of landscape change of lesser Himalayan Road corridor of Uttarakhand, India.",
+    authors: "Ujjwal Sur and Prafull Singh*",
+    journal: "Journal of Landscape Ecology",
+    date: "2020",
+    doi: "https://doi.org/10.2478/jlecol-2020-0014",
+    image: "images/paper21.png"},
+];
+
+function renderPublications() {
+  const grid = document.getElementById("publicationsGrid");
+  const tableBody = document.getElementById("archiveTableBody");
+  if (!grid || !tableBody) return;
+
+  grid.innerHTML = "";
+  tableBody.innerHTML = "";
+
+  // 1. Take exactly the top 5 papers and render them as cards
+  const topFive = allPublications.slice(0, 5);
+  topFive.forEach(paper => {
+    const card = document.createElement("article");
+    card.className = "pub-card";
+    card.innerHTML = `
+      <div class="pub-cover-wrap">
+        <img src="${paper.image}" alt="${paper.title}" class="pub-cover">
+      </div>
+      <div class="pub-body">
+        <div class="pub-meta">
+          <span>Article</span> • <span class="pub-date">${paper.date}</span>
+        </div>
+        <h3 class="pub-title">
+          <a href="${paper.doi}" target="_blank" rel="noopener noreferrer">${paper.title}</a>
+        </h3>
+        <p class="pub-authors"><strong>Authors:</strong> ${paper.authors}</p>
+        <div class="pub-actions">
+          <span class="pub-journal-tag">${paper.journal}</span>
+          <a href="${paper.doi}" target="_blank" rel="noopener noreferrer" class="pub-link-btn">View Article ↗</a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // 2. Render the 6th slot as the "View More" card
+  const remainingCount = allPublications.length - 5;
+  const viewMoreCard = document.createElement("div");
+  viewMoreCard.className = "view-more-card";
+  viewMoreCard.onclick = togglePublicationTable;
+  viewMoreCard.innerHTML = `
+    <div class="vm-icon">📚</div>
+    <h3>All Publications</h3>
+    <p>${remainingCount > 0 ? `+${remainingCount} more published articles` : 'View full repository table'}</p>
+    <button class="view-more-btn" type="button">
+      <span>View All in Table</span> <span>▼</span>
+    </button>
+  `;
+  grid.appendChild(viewMoreCard);
+
+  // 3. Render all papers in the archive table
+  allPublications.forEach((paper, idx) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${idx + 1}</td>
+      <td style="white-space: nowrap;">${paper.date}</td>
+      <td class="t-title">${paper.title}</td>
+      <td>${paper.authors}</td>
+      <td class="t-journal">${paper.journal}</td>
+      <td><a href="${paper.doi}" target="_blank" rel="noopener noreferrer" class="t-link">View ↗</a></td>
+    `;
+    tableBody.appendChild(tr);
+  });
+}
+
+function togglePublicationTable() {
+  const container = document.getElementById("archiveTableContainer");
+  if (!container) return;
+  const isOpen = container.classList.toggle("open");
+  if (isOpen) {
+    container.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+// Run when the page finishes loading
+document.addEventListener("DOMContentLoaded", renderPublications);
+</script>
